@@ -1,0 +1,20 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: nodejs-cronjob
+  labels:
+    label-key: nodejs-cronjob
+spec:
+  schedule: "* * * * *"
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: pod-name
+          labels:
+            name: nodejs-cronjob
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: nodejs-cronjob
+              image: pedoelski/node-jobs:v1.0
